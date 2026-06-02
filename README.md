@@ -7,17 +7,6 @@
 - 依赖项目：`walker_tienkung_ei_description`
 - 获取地址：https://github.com/Open-X-Humanoid/TienKung_URDF
 
-请将 `tk_moveit_config` 与 `walker_tienkung_ei_description` 放在同一个 ROS 2 工作空间目录下（同级目录）。
-
-## 目录示例
-
-```text
-<your_ws>/
-├── src/
-│   ├── tk_moveit_config
-│   └── walker_tienkung_ei_description
-```
-
 ## 构建与运行
 
 在工作空间根目录执行：
@@ -40,4 +29,20 @@ cd <your_ws>/src
 git clone https://github.com/Open-X-Humanoid/TienKung_URDF.git
 ```
 
-然后确认 `walker_tienkung_ei_description` 位于与 `tk_moveit_config` 同级目录后，再进行 `colcon build`。
+
+## Walker-TienKung-URDF 文件夹结构
+
+路径：`~/lsy_ws/Humanoid/UBitech/Walker-TienKung-URDF`
+
+### 工作空间目录
+
+```text
+Walker-TienKung-URDF/
+├── ros/tk_moveit_config/
+│   ├── config/
+│   └── launch/
+└── walker_tienkung_ei_description/
+	├── urdf/
+	├── meshes/
+	└── launch/
+```
