@@ -1,0 +1,27 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: walker_tienkung_ei_description
+    relative_path: urdf/walker_tienkung_ei.urdf
+  srdf:
+    relative_path: config/humanoid.srdf
+  package_settings:
+    author_name: Siyu Luo
+    author_email: lsy15115211004@163.com
+    generated_timestamp: 1764295976
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+      - effort
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+      - effort
