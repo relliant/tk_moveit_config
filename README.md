@@ -5,7 +5,7 @@
 ## 依赖说明
 
 - 依赖项目：`walker_tienkung_ei_description`
-- 获取地址：https://github.com/Open-X-Humanoid/TienKung_URDF
+- 获取地址：https://github.com/TUSZ-AGDR/walker_tienkung_ei_description
 
 ## 构建与运行
 
