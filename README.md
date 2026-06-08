@@ -71,11 +71,42 @@ Walker-TienKung-URDF/
 
 实机不使用 `ros2_control_node`，而是通过 `trajectory_bridge` 节点将 MoveIt 轨迹转发给实机 bodyctrl 驱动。
 
+### 预备工作
+
+1.创建工作空间
+```bash
+mkdir -p moveit_ws/src
+```
+
+2.克隆walker_tienkung_ei_description依赖包
+```bash
+cd ~/moveit_ws/src/
+
+git clone https://github.com/TUSZ-AGDR/walker_tienkung_ei_description #团队成员使用这个
+
+git clone https://github.com/relliant/walker_tienkung_ei_description #个人用
+```
+
+3.在实机板卡上克隆该项目代码
+```bash
+cd ~/moveit_ws/src/
+
+git clone https://github.com/TUSZ-AGDR/tk_moveit_config
+
+git clone https://github.com/relliant/tk_moveit_config
+```
+
+4.编译
+```bash
+cd ..
+colcon build
+```
+
 ### 启动步骤
 
 ```bash
 # 1. 依次 source 三个工作空间（顺序不能乱）
-source ~/lsy_ws/Humanoid/UBitech/ros2ws/install/setup.bash                         # bodyctrl SDK
+source ~/ros2ws/install/setup.bash                         # bodyctrl SDK
 source ~/lsy_ws/Humanoid/UBitech/Walker-TienKung-URDF/install/setup.bash
 source ~/lsy_ws/Humanoid/UBitech/Walker-TienKung-URDF/ros/install/setup.bash
 
