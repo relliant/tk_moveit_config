@@ -14,3 +14,8 @@ endif()
 
 install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
 install(FILES .setup_assistant DESTINATION share/${PROJECT_NAME})
+
+install(PROGRAMS scripts/trajectory_bridge.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME trajectory_bridge
+)

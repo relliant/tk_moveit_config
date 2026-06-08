@@ -67,6 +67,44 @@ Walker-TienKung-URDF/
 	- 点击 Add 重新加载 MotionPlanning。
 	- 维持当前启动顺序控制思路（先核心节点，后 RViz）。
 
+## 部署到实机
+
+实机不使用 `ros2_control_node`，而是通过 `trajectory_bridge` 节点将 MoveIt 轨迹转发给实机 bodyctrl 驱动。
+
+### 启动步骤
+
+```bash
+# 1. 依次 source 三个工作空间（顺序不能乱）
+source ~/lsy_ws/Humanoid/UBitech/ros2ws/install/setup.bash                         # bodyctrl SDK
+source ~/lsy_ws/Humanoid/UBitech/Walker-TienKung-URDF/install/setup.bash
+source ~/lsy_ws/Humanoid/UBitech/Walker-TienKung-URDF/ros/install/setup.bash
+
+# 2. 启动实机
+ros2 launch tk_moveit_config real_robot.launch.py
+```
+
+### 架构说明
+
+```
+MoveIt (move_group)
+  ↓ FollowJointTrajectory action
+trajectory_bridge  →  /arm/cmd_pos  →  实机 bodyctrl 驱动
+                                              ↓
+joint_state_publisher  ←  /arm/status  ←────┘
+  ↓ /joint_states
+MoveIt robot state
+```
+
+### 注意事项
+
+- **首次上机**：先规划一个小幅度动作，确认 `/arm/status` 有数据后再执行。
+- **速度/力矩参数**：默认 `spd=0.2 rad/s, cur=8.0 A`，可在 `scripts/trajectory_bridge.py` 开头修改 `DEFAULT_SPD` / `DEFAULT_CUR`。
+- **仿真不受影响**：原 `start.launch.py` 未改动，仿真照常使用。
+
+---
+
+## Troubleshooting
+
 ### 2) Plan 能看到轨迹，但 Execute 无法执行
 
 - 问题
